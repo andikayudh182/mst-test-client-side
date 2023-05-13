@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <p>{{ TestingData}}</p>
+    <p>{{ TestingData}} testing</p>
     <!-- <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -158,11 +158,7 @@ import axios from 'axios'
     },
     methods:{
       async initialize() {
-        await axios.get('https://mst-test-production.up.railway.app/list',{
-          headers:{
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
+        await axios.get('https://mst-test-production.up.railway.app/list')
         .then(response => {
           console.log(response.data);
         })
