@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <v-row class="text-center">
+    <p>{{ TestingData}}</p>
+    <!-- <v-row class="text-center">
       <v-col cols="12">
         <v-img
           :src="require('../assets/logo.svg')"
@@ -87,65 +88,88 @@
           </a>
         </v-row>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
+
 <script>
+
+import axios from 'axios'
   export default {
     name: 'HelloWorld',
 
     data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
+      // ecosystem: [
+      //   {
+      //     text: 'vuetify-loader',
+      //     href: 'https://github.com/vuetifyjs/vuetify-loader',
+      //   },
+      //   {
+      //     text: 'github',
+      //     href: 'https://github.com/vuetifyjs/vuetify',
+      //   },
+      //   {
+      //     text: 'awesome-vuetify',
+      //     href: 'https://github.com/vuetifyjs/awesome-vuetify',
+      //   },
+      // ],
+      // importantLinks: [
+      //   {
+      //     text: 'Documentation',
+      //     href: 'https://vuetifyjs.com',
+      //   },
+      //   {
+      //     text: 'Chat',
+      //     href: 'https://community.vuetifyjs.com',
+      //   },
+      //   {
+      //     text: 'Made with Vuetify',
+      //     href: 'https://madewithvuejs.com/vuetify',
+      //   },
+      //   {
+      //     text: 'Twitter',
+      //     href: 'https://twitter.com/vuetifyjs',
+      //   },
+      //   {
+      //     text: 'Articles',
+      //     href: 'https://medium.com/vuetify',
+      //   },
+      // ],
+      // whatsNext: [
+      //   {
+      //     text: 'Explore components',
+      //     href: 'https://vuetifyjs.com/components/api-explorer',
+      //   },
+      //   {
+      //     text: 'Select a layout',
+      //     href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
+      //   },
+      //   {
+      //     text: 'Frequently Asked Questions',
+      //     href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+      //   },
+      // ],
+      TestingData:'aa'
     }),
+
+    mounted(){
+      this.initialize()
+    },
+    methods:{
+      async initialize() {
+        await axios.get('https://mst-test-production.up.railway.app/list',{
+          headers:{
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      }
+    }
   }
 </script>
